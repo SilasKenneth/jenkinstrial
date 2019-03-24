@@ -11,11 +11,16 @@ pipeline {
             sh 'python -m pytest --cov=app --cov-report=term-missing'
           }
         }
-        stage('') {
+        stage('Print') {
           steps {
             sh 'echo Hello world'
           }
         }
+      }
+    }
+    stage('Done') {
+      steps {
+        echo 'I miss the build'
       }
     }
   }
