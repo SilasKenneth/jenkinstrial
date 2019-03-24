@@ -23,5 +23,10 @@ pipeline {
         echo 'I miss the build'
       }
     }
+    stage('Congrats') {
+      steps {
+        echo 'Congratulations everything worked'
+      }
+    }
   }
 }
