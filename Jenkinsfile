@@ -7,10 +7,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-      	sh 'sudo python -m pip install virtualenv'
-        sh 'python -m virtualenv env'
+      	sh 'pip install virtualenv'
+        sh 'virtualenv env'
         sh 'source env/bin/activate'
-        sh 'python -m pip install -r requirements.txt'
+        sh 'pip install -r requirements.txt'
         sh 'python -m pytest --cov=app --cov-report=term-missing'
       }
     }
