@@ -1,9 +1,13 @@
 pipeline {
-  agent any
+  agent {
+  	docker{
+  		image 'python:3.5.7-alpine'
+  	}
+  }
   stages {
     stage('Build') {
       steps {
-        sh 'python3 -m virtualenv env'
+        sh 'python -m virtualenv env'
         sh 'source env/bin/activate'
         sh 'python -m pip install -r requirements.txt'
         sh 'python -m pytest --cov=app --cov-report=term-missing'
