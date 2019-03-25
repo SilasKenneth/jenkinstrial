@@ -7,6 +7,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+      	sh 'python -m pip install virtualenv'
         sh 'python -m virtualenv env'
         sh 'source env/bin/activate'
         sh 'python -m pip install -r requirements.txt'
