@@ -7,11 +7,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-      	sh 'pip install virtualenv --user'
-        sh 'virtualenv env'
-        sh 'source env/bin/activate'
-        sh 'pip install -r requirements.txt'
-        sh 'python -m pytest --cov=app --cov-report=term-missing'
+      	withEnv(["HOME=${env.WORKSPACE}"]){
+	      	sh 'pip install virtualenv'
+	        sh 'virtualenv env'
+	        sh 'source env/bin/activate'
+	        sh 'pip install -r requirements.txt'
+	        sh 'python -m pytest --cov=app --cov-report=term-missing'
+      	}
       }
     }
     stage('Done') {
