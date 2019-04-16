@@ -3,7 +3,6 @@ pipeline {
   	kubernetes{
       label 'silas-deploy'
       defaultContainer 'jnlp'
-  		image 'python:3.5.7-alpine3.8'
   		yamlFile 'jenkins/config.yml'
   	}
   }
