@@ -8,26 +8,30 @@ pipeline {
   	}
   }
   stages {
-    container("pythonalpine38"){
       stage('Build') {
         steps {
-        	sh 'pip install virtualenv'
-          sh 'virtualenv env'
-          sh 'source env/bin/activate'
-          sh 'pip install -r requirements.txt'
-          sh 'python -m pytest --cov=app --cov-report=term-missing'
+          container("pythonalpine38"){
+            	sh 'pip install virtualenv'
+              sh 'virtualenv env'
+              sh 'source env/bin/activate'
+              sh 'pip install -r requirements.txt'
+              sh 'python -m pytest --cov=app --cov-report=term-missing'
+            }
         }
       }
       stage('Done') {
         steps {
-          echo 'I miss the build'
+          container("pythonalpine38"){
+            echo 'I miss the build'
+          }
         }
       }
       stage('Congrats') {
         steps {
-          echo 'Congratulations everything worked'
+          container("pythonalpine38"){
+            echo 'Congratulations everything worked'
+          }
         }
     }
   }
-}
 }
